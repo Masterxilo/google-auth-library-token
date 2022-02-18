@@ -78,10 +78,11 @@ npm install
 ```
 
 ## TODO
-Maybe we could use cpp client lib for highest efficiency and smaller binaries instead of this insanely large node packaged app.
-
+[ ] Maybe we could use cpp client lib for highest efficiency and smaller binaries instead of this insanely large node packaged app.
 https://github.com/googleapis/google-cloud-cpp
 https://github.com/googleapis/google-cloud-cpp/blob/main/google/cloud/storage/quickstart/README.md
+
+[ ] the tool would be more useful if you could also pass the filename GOOGLE_APPLICATION_CREDENTIALS as a relative path as a commandline argument or even the contents of the file...
 
 # Tags
 GOOGLE_APPLICATION_CREDENTIALS
