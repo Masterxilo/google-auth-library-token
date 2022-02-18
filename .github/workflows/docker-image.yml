@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build the Docker image
+      run: ( docker pull masterxilo/google-auth-library-token || true ) && docker build . --file Dockerfile --tag masterxilo/google-auth-library-token --cache-from masterxilo/google-auth-library-token
+    
+    - name: Push the Docker image
+      run: echo ${{ secrets.MASTERXILO_DOCKER_IO_PASSWORD }} | docker login --username masterxilo --password-stdin docker.io && docker push masterxilo/google-auth-library-token && docker logout
