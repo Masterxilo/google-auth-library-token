@@ -1,7 +1,8 @@
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
-Remove-Item dist/*
+mkdir dist -ErrorAction SilentlyContinue
+Remove-Item dist/* -ErrorAction SilentlyContinue
 
 # depends on nodejs/npm
 npm run package
