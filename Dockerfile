@@ -7,3 +7,5 @@ RUN npm install
 
 COPY . .
 RUN ./build
+
+ENTRYPOINT [ "/app/google-auth-library-token" ]
