@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 
-sudo docker build .
+sudo docker build . --tag masterxilo/google-auth-library-token

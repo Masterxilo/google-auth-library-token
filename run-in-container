@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+
+sudo docker run --rm --volume /:/host --env "GOOGLE_APPLICATION_CREDENTIALS=/host${GOOGLE_APPLICATION_CREDENTIALS}" masterxilo/google-auth-library-token
