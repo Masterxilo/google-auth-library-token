@@ -1,7 +1,16 @@
 # google-auth-library-token aka. GOOGLE_APPLICATION_CREDENTIALS_to_access_token
 
 ## TLDR usage
-Download either executable `google-auth-library-token(.exe)` from `dist`, define/`export GOOGLE_APPLICATION_CREDENTIALS` or `$env:GOOGLE_APPLICATION_CREDENTIALS`, `%GOOGLE_APPLICATION_CREDENTIALS%` to point to the full path of a `service-account-file.json` containing something like
+Download either executable `google-auth-library-token(.exe)` from `dist`, define/`export GOOGLE_APPLICATION_CREDENTIALS` or `$env:GOOGLE_APPLICATION_CREDENTIALS`, `%GOOGLE_APPLICATION_CREDENTIALS%`, e.g.
+
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS="$(realpath GOOGLE_APPLICATION_CREDENTIALS)"
+```
+```powershell
+$env:GOOGLE_APPLICATION_CREDENTIALS=(Get-Item GOOGLE_APPLICATION_CREDENTIALS).FullName
+```
+
+to point to the full path of a `GOOGLE_APPLICATION_CREDENTIALS` sometimes named `service-account-file.json` containing something like
 
 ```
 {
@@ -21,7 +30,13 @@ Download either executable `google-auth-library-token(.exe)` from `dist`, define
 then run
 
 ```
+# curl.exe -L https://github.com/Masterxilo/google-auth-library-token/raw/master/dist/google-auth-library-token.exe -o google-auth-library-token.exe
+# curl -L https://github.com/Masterxilo/google-auth-library-token/raw/master/dist/google-auth-library-token -o google-auth-library-token ; chmod +x ./google-auth-library-token
+
 ./google-auth-library-token
+
+# or alternatively, using docker
+sudo docker run --rm --volume /:/host --env "GOOGLE_APPLICATION_CREDENTIALS=/host${GOOGLE_APPLICATION_CREDENTIALS}" masterxilo/google-auth-library-token
 ```
 
 and obtain on stdout an access_token like:
