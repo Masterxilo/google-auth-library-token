@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euo pipefail
+
+rm dist/*
+
+# depends on nodejs/npm
+npm run package
+
+pushd dist
+cp google-auth-library-token-win.exe google-auth-library-token.exe || true
+cp google-auth-library-token.exe google-auth-library-token-win.exe || true
+cp google-auth-library-token-linux google-auth-library-token || true
+cp google-auth-library-token google-auth-library-token-linux || true
+
+rm *-linux || true
+rm *-win.exe || true
+popd

@@ -1,0 +1,24 @@
+{
+  "name": "google-auth-library-token",
+  "version": "1.0.0",
+  "description": "see README.md",
+  "main": "index.js",
+  "bin": "index.js",
+  "pkg": {
+    "scripts": [
+      "index.js"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "pkg --out-path ./dist --targets node12-win,node12-linux --public --options async-stack-traces ./package.json"
+  },
+  "author": "Paul Frischknecht",
+  "license": "WTFPL",
+  "dependencies": {
+    "google-auth-library": "^7.11.0"
+  },
+  "devDependencies": {
+    "pkg": "^4.4.0"
+  }
+}
