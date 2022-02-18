@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package*.json .
 RUN npm install
 
-COPY . .
+COPY . ./
 RUN ./build
 
 ENTRYPOINT [ "/app/google-auth-library-token" ]
