@@ -22,6 +22,8 @@ async function main() {
   const auth = new GoogleAuth({ scopes: 'https://www.googleapis.com/auth/cloud-platform' });
   const token = await auth.getAccessToken();
   assert(token.length > 0, 'retrieved token has 0 length?!')
+
+  // stdout == token
   console.log(token);
 }
 
