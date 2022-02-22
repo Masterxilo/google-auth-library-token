@@ -2,3 +2,4 @@ node_modules
 
 # dist-- must be included, we assume the binary is available in to repo!
 #dist
+GOOGLE_APPLICATION_CREDENTIALS.example

@@ -1,4 +1,6 @@
 const { GoogleAuth } = require('google-auth-library');
+const assert = require('assert');
+const fs = require('fs');
 
 // input: environment variable (process.env) GOOGLE_APPLICATION_CREDENTIALS
 // stdout output: token for that (service) client
@@ -14,6 +16,11 @@ async function main() {
   const token = await auth.getAccessToken();
   console.log(token);
 }
+
+// validate assumptions about GOOGLE_APPLICATION_CREDENTIALS env var (as assumed by google-auth-library.GoogleAuth implementation...)
+const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS
+assert(GOOGLE_APPLICATION_CREDENTIALS, 'GOOGLE_APPLICATION_CREDENTIALS environment variable is var not set!');
+assert(fs.existsSync(GOOGLE_APPLICATION_CREDENTIALS), `GOOGLE_APPLICATION_CREDENTIALS file '${GOOGLE_APPLICATION_CREDENTIALS}' does not exist!`);
 
 main().catch(error => {
   console.error({ error });
