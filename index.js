@@ -12,15 +12,18 @@ const fs = require('fs');
 * this library will automatically choose the right client based on the environment.
 */
 async function main() {
+  // validate assumptions about GOOGLE_APPLICATION_CREDENTIALS env var (as assumed by google-auth-library.GoogleAuth implementation...)
+  const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS
+  assert(GOOGLE_APPLICATION_CREDENTIALS, 'GOOGLE_APPLICATION_CREDENTIALS environment variable is var not set!');
+  assert(fs.existsSync(GOOGLE_APPLICATION_CREDENTIALS), `GOOGLE_APPLICATION_CREDENTIALS file '${GOOGLE_APPLICATION_CREDENTIALS}' does not exist!`);
+
+  console.error(`fetching token for GOOGLE_APPLICATION_CREDENTIALS="${GOOGLE_APPLICATION_CREDENTIALS}"...`);
+
   const auth = new GoogleAuth({ scopes: 'https://www.googleapis.com/auth/cloud-platform' });
   const token = await auth.getAccessToken();
+  assert(token.length > 0, 'retrieved token has 0 length?!')
   console.log(token);
 }
-
-// validate assumptions about GOOGLE_APPLICATION_CREDENTIALS env var (as assumed by google-auth-library.GoogleAuth implementation...)
-const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS
-assert(GOOGLE_APPLICATION_CREDENTIALS, 'GOOGLE_APPLICATION_CREDENTIALS environment variable is var not set!');
-assert(fs.existsSync(GOOGLE_APPLICATION_CREDENTIALS), `GOOGLE_APPLICATION_CREDENTIALS file '${GOOGLE_APPLICATION_CREDENTIALS}' does not exist!`);
 
 main().catch(error => {
   console.error({ error });
