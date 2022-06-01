@@ -10,7 +10,7 @@ export GOOGLE_APPLICATION_CREDENTIALS="$(realpath GOOGLE_APPLICATION_CREDENTIALS
 $env:GOOGLE_APPLICATION_CREDENTIALS=(Get-Item GOOGLE_APPLICATION_CREDENTIALS).FullName
 ```
 
-to point to the full path of a `GOOGLE_APPLICATION_CREDENTIALS` sometimes named `service-account-file.json` containing something like
+to point to the full path of a `GOOGLE_APPLICATION_CREDENTIALS` file sometimes named `service-account-file.json` containing something like
 
 ```
 {
@@ -69,9 +69,9 @@ but does not depend on the entire google-cloud-sdk.
 * https://cloud.google.com/docs/authentication/production
 
 # Implementation and building
-Current implementation uses google-auth-library.GoogleAuth. Binaries are pretty large because they bundle nodejs but at least run fast.
+Current implementation uses [google-auth-library](https://www.npmjs.com/package/google-auth-library).GoogleAuth. Binaries are pretty large because they bundle nodejs (built using [pkg](https://www.npmjs.com/package/pkg)), but at least run fast.
 
-Rebuild using powershell on Windows or bash, assuming nodejs/npm are installed:
+You can build it on your own using powershell on Windows, pwsh or bash, assuming nodejs/npm are installed:
 ```
 npm install
 ./build
@@ -79,8 +79,8 @@ npm install
 
 ## TODO
 [ ] Maybe we could use cpp client lib for highest efficiency and smaller binaries instead of this insanely large node packaged app.
-https://github.com/googleapis/google-cloud-cpp
-https://github.com/googleapis/google-cloud-cpp/blob/main/google/cloud/storage/quickstart/README.md
+* https://github.com/googleapis/google-cloud-cpp
+* https://github.com/googleapis/google-cloud-cpp/blob/main/google/cloud/storage/quickstart/README.md
 
 [ ] the tool would be more useful if you could also pass the filename GOOGLE_APPLICATION_CREDENTIALS as a relative path as a commandline argument or even the contents of the file...
 
