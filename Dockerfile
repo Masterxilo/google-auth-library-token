@@ -1,9 +1,9 @@
 #FROM node:12-alpine # the compiled binary does not work within alpine.. gives 'path not found'...
 #RUN apk add bash
-FROM ubuntu
+FROM ubuntu:20.04
 RUN apt-get update
 RUN apt-get install -y curl sudo
-RUN curl -fsSL https://deb.nodesource.com/setup_12.x | sudo -E bash - ; sudo apt-get install -y nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - ; sudo apt-get install -y nodejs
 
 WORKDIR /app
 COPY package*.json ./
