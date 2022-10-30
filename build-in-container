@@ -2,4 +2,10 @@
 set -euo pipefail
 
 # TODO use paulfrischknecht repo instead
-sudo docker build --progress plain . --tag masterxilo/google-auth-library-token
+TAG=masterxilo/google-auth-library-token
+#sudo docker build --progress plain --file Dockerfile . --tag $TAG
+
+# note: the -alpine binary not built in alpine gives Segmentation fault in alpine!
+rm dist/*-token dist/*-token.exe || true
+sudo docker run --volume "$(pwd)/dist:/app/dist2" --entrypoint /bin/bash $TAG -c 'rm /app/dist/*-alpine ; cp /app/dist/* /app/dist2 ; echo "copied dist files" ; find /app/dist2'
+

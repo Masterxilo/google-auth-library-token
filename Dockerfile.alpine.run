@@ -1,0 +1,23 @@
+#FROM alpine:3.16
+
+# includes libgcc 
+FROM node:12-alpine
+
+# gcompat libstdc++: required for
+#10 0.658       libstdc++.so.6 => /usr/lib/libstdc++.so.6 (0x7f9d72263000)
+#10 0.658       libgcc_s.so.1 => /usr/lib/libgcc_s.so.1 (0x7f9d72249000)
+# https://wiki.alpinelinux.org/wiki/Running_glibc_programs
+RUN apk add bash sudo curl wget musl musl-dev gcompat libstdc++
+SHELL ["/bin/bash", "-c"]
+
+WORKDIR /app
+RUN wget https://github.com/Masterxilo/google-auth-library-token/raw/master/dist/google-auth-library-token-alpine
+RUN chmod +x ./google-auth-library-token-alpine
+
+# Error loading shared library libstdc++.so.6
+RUN ldd ./google-auth-library-token-alpine
+# TODO #10 1.662 /bin/bash: line 1:     8 Segmentation fault      ./google-auth-library-token-alpine
+RUN ( ./google-auth-library-token-alpine || true ) 2>&1
+# | grep -F 'GOOGLE_APPLICATION_CREDENTIALS environment variable is not set!'
+
+ENTRYPOINT [ "/app/dist/google-auth-library-token" ]

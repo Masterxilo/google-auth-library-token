@@ -1,3 +1,8 @@
 dist/*
 /node_modules
 node_modules
+
+build*
+*.md
+Dockerfile*
+*.ps1
