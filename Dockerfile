@@ -12,4 +12,7 @@ RUN npm install
 COPY . ./
 RUN ./build
 RUN ls -l /app/dist/google-auth-library-token
+RUN ldd /app/dist/google-auth-library-token
+RUN ( /app/dist/google-auth-library-token || true ) 2>&1 | grep -F 'GOOGLE_APPLICATION_CREDENTIALS environment variable is not set!'
+
 ENTRYPOINT [ "/app/dist/google-auth-library-token" ]

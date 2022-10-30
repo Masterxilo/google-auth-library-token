@@ -84,6 +84,8 @@ npm install
 
 [ ] the tool would be more useful if you could also pass the filename GOOGLE_APPLICATION_CREDENTIALS as a relative path as a commandline argument or even the contents of the file...
 
+[x] alpine (musl) instead of glibc based version
+
 # Tags
 GOOGLE_APPLICATION_CREDENTIALS
 

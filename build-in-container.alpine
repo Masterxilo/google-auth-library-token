@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+
+sudo docker build --progress plain --file Dockerfile.alpine . --tag masterxilo/google-auth-library-token

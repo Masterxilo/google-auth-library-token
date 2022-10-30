@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "package": "pkg --out-path ./dist --targets node12-win,node12-linux --public --options async-stack-traces ./package.json"
+    "package": "pkg --out-path ./dist --targets node12-win,node12-linux,node12-alpine --public --options async-stack-traces ./package.json"
   },
   "author": "Paul Frischknecht",
   "license": "WTFPL",
