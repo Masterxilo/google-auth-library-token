@@ -11,6 +11,7 @@ RUN apk add bash sudo curl wget musl musl-dev gcompat libstdc++
 SHELL ["/bin/bash", "-c"]
 
 WORKDIR /app
+COPY cachebust .
 RUN wget https://github.com/Masterxilo/google-auth-library-token/raw/master/dist/google-auth-library-token-alpine
 RUN chmod +x ./google-auth-library-token-alpine
 
