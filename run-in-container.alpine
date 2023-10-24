@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euo pipefail
+
+touch cachebust
+sudo docker build --progress plain --file Dockerfile.alpine.run .

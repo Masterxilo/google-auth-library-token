@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+
+TAG=masterxilo/google-auth-library-token-alpine
+#sudo docker build --progress plain --file Dockerfile.alpine . --tag $TAG
+
+rm dist/*-alpine || true
+sudo docker run --volume "$(pwd)/dist:/app/dist2" --entrypoint /bin/bash $TAG -c 'find /app/dist2 ; cp /app/dist/*-alpine /app/dist2 ; echo "copied alpine files" ; find /app/dist2'
+

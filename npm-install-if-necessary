@@ -1,0 +1,11 @@
+#!/bin/bash
+set -euo pipefail
+
+which npm
+
+# npm install should also be run if package.json has been modified since last npm install run --> copy package.json to ./node_modules/package.json and compare!!!
+if ! ls ./node_modules/package.json &> /dev/null || ! diff ./package.json ./node_modules/package.json &> /dev/null ; then
+    echo "npm install not run or outdated, running..." 1>&2
+    npm install 1>&2
+    cp ./package.json ./node_modules/package.json 1>&2
+fi
