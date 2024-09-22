@@ -43,10 +43,6 @@ then run it
 
 ```bash
 ./google-auth-library-token
-
-
-# or alternatively, using docker
-sudo docker run --rm --volume /:/host --env "GOOGLE_APPLICATION_CREDENTIALS=/host${GOOGLE_APPLICATION_CREDENTIALS}" masterxilo/google-auth-library-token
 ```
 
 and obtain on stdout an access_token like:
